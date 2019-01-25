@@ -1,7 +1,7 @@
 <!--登录界面的组件-->
 <template>
   <div class="login">
-    <el-form label-position="top" label-width="80px" :model="login" :rules="rules" ref="ruleForm">
+    <el-form label-position="top" label-width="80px" :model="login" :rules="rules" ref="loginForm">
       <el-form-item label="名称" prop="username">
         <el-input v-model="login.username"></el-input>
       </el-form-item>
@@ -9,8 +9,8 @@
         <el-input v-model="login.password"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm()">登录</el-button>
-        <el-button @click="resetForm()">重置</el-button>
+        <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
+        <el-button @click="resetForm('loginForm')">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -28,7 +28,7 @@
    */
   export default {
     name: 'Login',
-    data() {
+    data () {
       return {
         login: {
           username: '',
@@ -44,17 +44,17 @@
             {min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur'},
           ],
         },
-      }
+      };
     },
     methods: {
-      submitForm(ruleForm) {
-        console.log(this.login.username)
+      submitForm (ruleForm) {
+        console.log(this.login.username);
       },
-      resetForm() {
-        console.log(this.login.password)
-      }
+      resetForm () {
+        console.log(this.login.password);
+      },
     },
-  }
+  };
 </script>
 
 <style scoped>
