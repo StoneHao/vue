@@ -1,25 +1,25 @@
 <!--登录界面的组件-->
 <template>
-  <div class="login">
-    <el-form label-position="top" label-width="80px" :model="login" :rules="rules" ref="loginForm">
-      <el-form-item label="用户名" prop="username">
-        <el-input v-model="login.username"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="password">
-        <el-input v-model="login.password" type="password"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm">登录</el-button>
-        <el-button @click="resetForm">重置</el-button>
-      </el-form-item>
-    </el-form>
-  </div>
+  <el-row type="flex" justify="center" align="middle" class="loginForm">
+    <el-col :xs="12" :sm="10" :md="8" :lg="8" :xl="6" class="login-content">
+      <div class="grid-content bg-purple"></div>
+      <el-form label-position="top" label-width="80px" :model="login" :rules="rules" ref="loginForm">
+        <el-form-item label="用户名" prop="username">
+          <el-input v-model="login.username"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input v-model="login.password" type="password"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="submitForm">登录</el-button>
+          <el-button @click="resetForm">重置</el-button>
+        </el-form-item>
+      </el-form>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
-  // 导入 axios
-  import axios from 'axios';
-
   /**
    * el-form
    * label-position="top" 设置label的位置
@@ -65,7 +65,7 @@
         // 参数 valid  是否校验成功
         this.$refs.loginForm.validate(valid => {
           if (valid) {
-            axios.post('http://localhost:8888/api/private/v1/login', this.login).then(result => {
+            this.$http.post('/login', this.login).then(result => {
               const {data, meta} = result.data;
               if (meta.msg === '登录成功') {
                 // 登陆成功 存储token 跳转首页
@@ -92,9 +92,15 @@
   };
 </script>
 
-<style scoped>
-  .login {
-    width: 50%;
-    margin: 0 auto;
+<style scoped lang="less">
+  .loginForm {
+    height: 100%;
+    background-color: #2d434c;
+    .login-content {
+      min-width: 300px;
+      padding: 0 35px;
+      border-radius: 10px;
+      background-color: #fff
+    }
   }
 </style>

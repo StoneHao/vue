@@ -2,7 +2,9 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Login from '../components/Login.vue';
 import Home from '../components/Home.vue';
+import Users from '../components/Users';
 //  安装路由插件 在webpack这样的模块化系统中，必须执行这一步 如果通过script引入则不需要
+//  相当于将vue-router 动态挂载到了vue所有对象和组件的prototype原型上
 Vue.use(Router);
 
 const router = new Router({
@@ -21,6 +23,12 @@ const router = new Router({
       path: '/home',
       name: 'Home',
       component: Home,
+      children:
+        [
+          {
+            path: 'users',
+            component: Users,
+          }],
     },
   ],
 });
