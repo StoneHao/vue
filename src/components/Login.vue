@@ -35,19 +35,19 @@
       return {
         login: {
           username: '',
-          password: '',
+          password: ''
         },
         rules: {
           username: [
             {required: true, message: '请输入用户名', trigger: 'blur'},
-            {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'},
+            {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
           ],
           password: [
             {required: true, message: '请输入密码', trigger: 'blur'},
-            {min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur'},
-          ],
-        },
-      };
+            {min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur'}
+          ]
+        }
+      }
     },
     methods: {
       /* 1 校验用户名和密码
@@ -66,30 +66,28 @@
         this.$refs.loginForm.validate(valid => {
           if (valid) {
             this.$http.post('/login', this.login).then(result => {
-              const {data, meta} = result.data;
+              const {data, meta} = result.data
               if (meta.msg === '登录成功') {
                 // 登陆成功 存储token 跳转首页
-                localStorage.setItem('token', data.token);
-                this.$router.push('/home');
-              }
-              else {
+                localStorage.setItem('token', data.token)
+                this.$router.push('/home')
+              } else {
                 // 登陆失败 给出提示
                 this.$message({
                   message: '用户名或者密码错误',
                   type: 'error',
-                  duration: 2000,
-                });
+                  duration: 2000
+                })
               }
-            });
+            })
           }
-
-        });
+        })
       },
       resetForm () {
-        this.$refs.loginForm.resetFields();
-      },
-    },
-  };
+        this.$refs.loginForm.resetFields()
+      }
+    }
+  }
 </script>
 
 <style scoped lang="less">

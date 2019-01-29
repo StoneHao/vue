@@ -6,12 +6,12 @@
 
 <script>
   export default {
-    name: 'App',
-  };
+    name: 'App'
+  }
 </script>
 
 <style scoped>
-  #app{
+  #app {
     height: 100%;
   }
 </style>

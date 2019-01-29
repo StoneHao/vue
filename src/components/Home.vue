@@ -72,40 +72,41 @@
         this.$confirm('是否退出系统', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
-          type: 'warning',
+          type: 'warning'
         }).then(() => {
           this.$message({
             type: 'success',
             message: '退出成功!',
-            duration:2000,
-          });
+            duration: 2000
+          })
           // 清除token
-          localStorage.removeItem('token');
+          localStorage.removeItem('token')
           // 跳转登录页
-          this.$router.push('/login');
+          this.$router.push('/login')
         }).catch(() => {
           this.$message({
             type: 'info',
             message: '已取消退出',
-            duration:2000,
-          });
-        });
+            duration: 2000
+          })
+        })
       },
       /* 事件open的处理函数 指定展开的sub-menu */
       handleOpen (key, keyPath) {
-        console.log(key, keyPath);
+        console.log(key, keyPath)
       },
       /* 事件open的处理函数 收起指定的sub-menu */
       handleClose (key, keyPath) {
-        console.log(key, keyPath);
-      },
-    },
-  };
+        console.log(key, keyPath)
+      }
+    }
+  }
 </script>
 
 <style scoped lang="less">
   .home {
     height: 100%;
+    position: relative;
     .el-header {
       padding: 0 10px;
       background-color: #b3c1cd;
